@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using AWS.NET_MVC_Demo.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<AWSNET_MVC_DemoContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AWSNET_MVC_DemoContext") ?? throw new InvalidOperationException("Connection string 'AWSNET_MVC_DemoContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
